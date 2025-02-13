@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Employer extends Model
 {
     use HasFactory;
+    protected $fillable = ['name', 'logo', 'user_id'];
 
     public function user(): BelongsTo
     {
@@ -20,4 +21,14 @@ class Employer extends Model
     {
         return $this->hasMany(Job::class);
     }
+    protected static function boot()
+{
+    parent::boot();
+
+    static::creating(function ($employer) {
+        if (!$employer->logo) {
+            $employer->logo = asset('images/default-logo.png'); // Provide a default image
+        }
+    });
+}
 }
