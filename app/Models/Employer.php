@@ -22,13 +22,13 @@ class Employer extends Model
         return $this->hasMany(Job::class);
     }
     protected static function boot()
-{
-    parent::boot();
+    {
+        parent::boot();
 
-    static::creating(function ($employer) {
-        if (!$employer->logo) {
-            $employer->logo = asset('images/default-logo.png'); // Provide a default image
-        }
-    });
-}
+        static::creating(function ($employer) {
+            if (!$employer->logo) {
+                $employer->logo = asset('images/default-logo.png');
+            }
+        });
+    }
 }
