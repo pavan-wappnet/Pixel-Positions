@@ -23,10 +23,16 @@
                 <a href="#">Companies</a>
             </div>
             <div>
-                <a href="#">Post a job</a>
+                @auth
+                    <a href="#">Post a job</a> |
+                    <a href="{{ route('logout') }}">Logout</a>
+                @else
+                    <a href="{{ route('login') }}">Login</a> |
+                    <a href="{{ route('register') }}">Register</a>
+                @endauth
             </div>
         </nav>
-        
+
         <main class="mt-10 max-w-[986px] mx-auto">
             {{ $slot }}
         </main>
