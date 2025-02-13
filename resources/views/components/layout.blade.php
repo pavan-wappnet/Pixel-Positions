@@ -24,8 +24,15 @@
             </div>
             <div>
                 @auth
-                    <a href="#">Post a job</a> |
-                    <a href="{{ route('logout') }}">Logout</a>
+                    <a href="{{ route('jobs.create') }}">Post a job</a> |
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                        @method('DELETE')
+                    </form>
+
+                    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        Logout
+                    </a>
                 @else
                     <a href="{{ route('login') }}">Login</a> |
                     <a href="{{ route('register') }}">Register</a>
